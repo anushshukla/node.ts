@@ -1,0 +1,43 @@
+{
+  "name": "express-ts-boilerplate",
+  "//name": "project / application name", 
+  "version": "1.0.0",
+  "//version": "MAJOR.MINOR.PATCH | Please refer https://semver.org/",
+  "description": "Simple boilerplate for Setting up new services of Nodejs using Express Framework and Typescript superset",
+  "main": "src/index.ts",
+  "engines": {
+    "node": "=14.17.4",
+    "npm": ">=6.14.13 <7"
+  },
+  "scripts": {
+    "install": "npm  ci --prefer-offline --no-audit",
+    "install:prod": "npm  ci --cache .npm --production --prefer-offline --no-audit",
+    "build": "tsc",
+    "build:prod": "tsc --project tsconfig.production.json",
+    "start:server": "nodemon src/index.ts",
+    "start:server:prod": "docker composer up",
+    "test": "jest --detectOpenHandles --coverage --verbose",
+    "test:coverage": "jest --coverage",
+    "test:coverage:ci": "npm run test:coverage --silent --noStackTrace --ci --bail --json",
+    "lint": "eslint .",
+    "lint:changes": "func() { eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/$1 | grep  -E \"(.js$|.ts$|.tsx$)\"); }; func",
+    "lint:fix": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anushshukla/express-ts-boilerplate.git"
+  },
+  "keywords": [
+    "nodejs",
+    "express",
+    "typescript",
+    "ts",
+    "boilerplate"
+  ],
+  "author": "Anush",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anushshukla/express-ts-boilerplate/issues"
+  },
+  "homepage": "https://github.com/anushshukla/express-ts-boilerplate#readme"
+}
