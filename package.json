@@ -13,7 +13,7 @@
     "install": "npm  ci --prefer-offline --no-audit",
     "install:prod": "npm  ci --cache .npm --production --prefer-offline --no-audit",
     "build": "tsc",
-    "build:prod": "tsc --project tsconfig.production.json",
+    "build:prod": "tsc --project configs/tsconfig.prod.json",
     "start:server": "nodemon src/index.ts",
     "start:server:prod": "docker composer up",
     "test": "jest --detectOpenHandles --coverage --verbose",
