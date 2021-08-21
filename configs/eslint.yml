@@ -63,5 +63,6 @@ rules:
       - properties: always
         ignoreDestructuring: false
         ignoreImports: false
-        ignoreImports: true
         ignoreGlobals: false
+        allow:
+          - ''

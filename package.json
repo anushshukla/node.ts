@@ -1,6 +1,6 @@
 {
   "name": "express-ts-boilerplate",
-  "//name": "project / application name", 
+  "//name": "project / application name",
   "version": "1.0.0",
   "//version": "MAJOR.MINOR.PATCH | Please refer https://semver.org/",
   "description": "Simple boilerplate for Setting up new services of Nodejs using Express Framework and Typescript superset",
@@ -39,5 +39,14 @@
   "bugs": {
     "url": "https://github.com/anushshukla/express-ts-boilerplate/issues"
   },
-  "homepage": "https://github.com/anushshukla/express-ts-boilerplate#readme"
+  "homepage": "https://github.com/anushshukla/express-ts-boilerplate#readme",
+  "devDependencies": {
+    "commitlint": "^13.1.0",
+    "eslint": "^7.32.0",
+    "eslint-html-reporter": "^0.7.4",
+    "eslint-plugin-prettier": "^3.4.1",
+    "husky": "^7.0.1",
+    "jest": "^27.0.6",
+    "lint-staged": "^11.1.2"
+  }
 }
