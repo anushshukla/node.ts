@@ -1,0 +1,32 @@
+# Project Dependencies
+node_modules/
+
+# Cached Package Manager
+.npm/
+
+# Compiled Code
+build/
+
+# Test Coverage
+coverage/
+
+# environment variables
+.env
+
+# Logs
+logs
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# TypeScript v1 declaration files
+typings/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
