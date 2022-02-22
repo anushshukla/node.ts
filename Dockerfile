@@ -13,6 +13,7 @@ RUN npm install
 # RUN npm ci --only=production
 
 # Bundle app source
+COPY .env ./.env
 COPY src ./src
 COPY configs ./configs
 COPY typings ./typings
