@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import { json } from 'body-parser';
 import helmet from 'helmet';
+import timeout from 'connect-timeout';
 
 // Load env from .env files.
 const envInit = dotenv.config({
@@ -36,6 +37,7 @@ server.use(cors({
 }));
 server.use(helmet());
 server.use(json());
+server.use(timeout('5s'));
 server.use(logRequests);
 // server.use(addLocale);
 // server.use(responseEnhancer);

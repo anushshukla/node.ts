@@ -43,6 +43,7 @@
   "homepage": "https://github.com/anushshukla/express-ts-boilerplate#readme",
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
+    "@types/connect-timeout": "^0.0.36",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.21",
@@ -70,6 +71,7 @@
     "body-parser": "^1.19.2",
     "cls-hooked": "^4.2.2",
     "compression": "^1.7.4",
+    "connect-timeout": "^1.9.0",
     "cors": "^2.8.5",
     "date-fns-tz": "^1.2.2",
     "dotenv": "^16.0.0",
