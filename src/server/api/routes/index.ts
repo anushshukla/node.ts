@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import routesHealth from '@server/routes/routes.probes';
+import routesHealth from '@server/api/routes/routes.probes';
 
 const router = Router();
 
