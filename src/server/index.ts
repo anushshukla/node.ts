@@ -44,6 +44,18 @@ server.use(express.raw({
   limit: "100kb",
   type: "application/octet-stream"
 }));
+server.use(express.static({
+  dotfiles: "ignore",
+  etag: true,
+  extensions: false,
+  fallthrough: true,
+  immutable: false,
+  index: "index.html",
+  lastModified: true,
+  maxAge: 0,
+  redirect: true,
+  // setHeaders: function setStaticHeaders(response, path, stat) => {},
+}));
 app.use(compression())
 server.use(timeout('5s'));
 server.use(logRequests);
