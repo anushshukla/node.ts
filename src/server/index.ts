@@ -54,7 +54,9 @@ server.use(express.static({
   lastModified: true,
   maxAge: 0,
   redirect: true,
-  // setHeaders: function setStaticHeaders(response, path, stat) => {},
+  setHeaders: function setStaticHeaders(response, path, stat) {
+    response.set('x-timestamp', Date.now())
+  }
 }));
 app.use(compression())
 server.use(timeout('5s'));
