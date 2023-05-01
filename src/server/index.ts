@@ -1,46 +1,56 @@
 import path from 'path';
 import express from 'express';
-import compression from 'compression';
-import dotenv from 'dotenv';
 import cors from 'cors';
-import { json } from 'body-parser';
+import compression from 'compression';
 import helmet from 'helmet';
 import timeout from 'connect-timeout';
-
-// Load env from .env files.
-const envInit = dotenv.config({
-  path: path.resolve(
-    __dirname,
-    '../../.env'
-  ),
-  encoding: 'utf8'
-});
-
+import compression from 'compression';
+// code imports
+import initEnv from "@src/utils/init-env";
+import getEnv from "@src/utils/get-env";
 import routes from '@server/routes';
 import logRequests from '@server/middleware/log-request';
 import getLogger from '@utils/logger';
+import errorHander from '@src/error-handler';
 
+initEnv();
 const logger = getLogger('src/server/index');
-
-if (envInit.error) {
-  throw envInit.error;
-}
-
 const server = express();
 
 // Add global middlewares.
 // @ToDo replace the below response compression by implementing reverse proxy
 server.use(compression());
 server.use(cors({
-  origin: process.env.CORS_ORIGIN,
-  maxAge: Number(process.env.CORS_MAXAGE)
+  origin: getEnv("CORS_ORIGIN"),
+  optionsSuccessStatus: 200,
+  maxAge: Number(getEnv("CORS_MAXAGE"))
 }));
 server.use(helmet());
-server.use(json());
+server.use(express.json({
+  defaultCharset: "utf-8",
+  inflate: true,
+  limit: "100kb",
+  type: "application/json",
+  reviver: null
+}));
+server.use(express.text({
+  defaultCharset: "utf-8",
+  inflate: true,
+  limit: "100kb",
+  type: "text/plain"
+}));
+server.use(express.raw({
+  inflate: true,
+  limit: "100kb",
+  type: "application/octet-stream"
+}));
+app.use(compression())
 server.use(timeout('5s'));
 server.use(logRequests);
 // server.use(addLocale);
 // server.use(responseEnhancer);
+server.use((_req, _res, next) => next(new NotFoundError())); // 404 Page Not Found
+server.use(errorHander);
 server.use(routes);
 
 const httpServer = server.listen(3000);
