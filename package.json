@@ -6,11 +6,10 @@
     "description": "Simple boilerplate for Setting up new services of Nodejs using Express Framework and Typescript superset",
     "main": "src/index.ts",
     "engines": {
-        "node": "=14.16.1",
-        "npm": ">=6.14.13 <8"
+        "node": "=18.16.0",
+        "npm": ">=9.5.1"
     },
     "scripts": {
-        "install": "npm  ci --prefer-offline --no-audit",
         "install:prod": "npm  ci --cache .npm --production --prefer-offline --no-audit",
         "build": "tsc --project configs/tsconfig.json",
         "build:dev": "tsc --project configs/tsconfig.dev.json",
