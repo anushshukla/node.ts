@@ -19,9 +19,9 @@
     /* Project Options */
     "allowJs": true /* Allow javascript files to be compiled. */,
     "checkJs": false /* Report errors in .js files. */,
-    "declaration": true,
+    "declaration": false,
     "declarationMap": false /* Generates a sourcemap for each corresponding '.d.ts' file. */,
-    "declarationDir": "@types",
+    // "declarationDir": "@types", // if declarations are required then uncomment this
     // Refer https://www.typescriptlang.org/tsconfig#downlevelIteration
     "downlevelIteration": true,
     // Refer https://www.typescriptlang.org/tsconfig#importHelpers
@@ -82,10 +82,10 @@
     // "mapRoot": "",                           /* Specify the location where debugger should locate map files instead of generated locations. */
 
     /* Linter Checks */
-    "noUnusedLocals": false /* Report errors on unused locals. */,
-    "noUnusedParameters": false /* Report errors on unused parameters. */,
-    "noImplicitReturns": false /* Report error when not all code paths in function return a value. */,
-    "noFallthroughCasesInSwitch": false /* Report errors for fallthrough cases in switch statement. */,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true /* Report errors on unused parameters. */,
+    "noImplicitReturns": true /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": true /* Report errors for fallthrough cases in switch statement. */,
 
     /* Advanced */
     "allowUnreachableCode": false,
@@ -134,7 +134,7 @@
     "traceResolution": false,
 
     /* Refer https://www.typescriptlang.org/tsconfig#Projects_6255 */
-    "composite": true,
+    "composite": false,
     "disableReferencedProjectLoad": false,
     "disableSolutionSearching": false,
     "disableSourceOfProjectReferenceRedirect": false,

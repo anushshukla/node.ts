@@ -35,9 +35,10 @@ export const loginReqPayloadSchema = Joi.object({
 });
 
 export default function loginHandler(
-  request: ValidatedRequest<LoginRequest>,
+  _request: ValidatedRequest<LoginRequest>,
   response: Response
 ): Response<StandardPayloadResponse<LoginPayloadResponse>> {
+  // add business logic
   return response.json({
     status: true,
     message: 'Login successful',

@@ -13,7 +13,7 @@
         "install:prod": "npm  ci --cache .npm --production --prefer-offline --no-audit",
         "build": "tsc --project tsconfig.json",
         "build:dev": "tsc --project tsconfig.dev.json",
-        "start:server:dev": "ts-node-dev --project tsconfig.dev.json --watch src -r tsconfig-paths/register --transpile-only src/server/index.ts",
+        "start:server:dev": "ts-node-dev --project tsconfig.json --watch src -r tsconfig-paths/register --transpile-only src/server/index.ts",
         "start:server": "docker composer up",
         "test": "jest --detectOpenHandles --coverage --verbose",
         "test:coverage": "jest --coverage",

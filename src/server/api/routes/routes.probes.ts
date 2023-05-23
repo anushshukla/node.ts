@@ -16,14 +16,13 @@ router.use('/liveness', (_request: Request, response: Response) => {
   return response.status(200).send('alive');
 });
 
-router.use('/readiness', (request: Request, response: Response) => {
+router.use('/readiness', (_request: Request, response: Response) => {
   //   if (
   //     mySqlConnector.connection.isConnected &&
   //     [0, 3].includes(mongoDb.readyState)
   //   ) {
   //     return response.status(200).send('ready');
   //   }
-  console.log('here');
   return response.status(500).send('not ready');
 });
 

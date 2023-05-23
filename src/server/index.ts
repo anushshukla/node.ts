@@ -59,7 +59,7 @@ const globalMiddlewares = [
   logRequests,
 ];
 
-for (const middleware in globalMiddlewares) {
+for (const middleware of globalMiddlewares) {
   server.use(middleware);
 }
 
