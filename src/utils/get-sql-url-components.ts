@@ -1,4 +1,4 @@
-export interface MySqlUrlComponentsInterface {
+export interface SqlUrlComponentsInterface {
   username?: string;
   password?: string;
   database?: string;
@@ -6,9 +6,9 @@ export interface MySqlUrlComponentsInterface {
   port?: number;
 }
 
-export default function getMysqlUrlComponents(
+export default function getSqlUrlComponents(
   mysqlConnectionUrl: string
-): MySqlUrlComponentsInterface[] {
+): SqlUrlComponentsInterface[] {
   const mysqlDbNameSplit = mysqlConnectionUrl.split('/');
   const database = mysqlDbNameSplit[1];
   const mysqlCredsHostSplit = mysqlDbNameSplit[0].split('@');
