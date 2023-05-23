@@ -4,11 +4,11 @@ import { Router, Request, Response } from 'express';
 
 const router = Router();
 
-router.use('/start-up', (_request: Request, response: Response) => {
+router.use('/probes/start-up', (_request: Request, response: Response) => {
   return response.status(200).send('ok');
 });
 
-router.use('/liveness', (_request: Request, response: Response) => {
+router.use('/probes/liveness', (_request: Request, response: Response) => {
   const isShuttingDown = false;
   if (isShuttingDown) {
     response.status(500).send('shutting down');
@@ -16,7 +16,7 @@ router.use('/liveness', (_request: Request, response: Response) => {
   return response.status(200).send('alive');
 });
 
-router.use('/readiness', (_request: Request, response: Response) => {
+router.use('/probes/readiness', (_request: Request, response: Response) => {
   //   if (
   //     mySqlConnector.connection.isConnected &&
   //     [0, 3].includes(mongoDb.readyState)

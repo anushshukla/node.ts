@@ -20,7 +20,7 @@
         "test:coverage:ci": "npm run test:coverage --silent --noStackTrace --ci --bail --json",
         "lint": "eslint src/**.ts",
         "lint:changes": "func() { eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/$1 | grep  -E \"(.js$|.ts$|.tsx$)\"); }; func",
-        "lint:fix": "eslint src/** --fix"
+        "lint:fix": "eslint src/**.ts --fix"
     },
     "repository": {
         "type": "git",

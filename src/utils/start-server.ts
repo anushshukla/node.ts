@@ -1,7 +1,7 @@
 import initEnv from '@utils/init-env';
 import getEnv from '@utils/get-env';
 initEnv();
-import server from '@server/index';
+import server from '@server/api/routes/index';
 import connectDatabases from '@utils/connect-databases';
 import onHttpServerError from '@src/utils/on-http-server-error';
 import onHttpServerClose from '@src/utils/on-http-server-close';
