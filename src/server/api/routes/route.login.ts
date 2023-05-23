@@ -22,6 +22,10 @@ const router = Router();
  * @param {LoginReqPayload} request.body.required - Login Request Payload
  * @return {object} 200 - success response
  */
-router.post('/login', createValidator().query(loginReqPayloadSchema), loginHandler);
+router.post(
+  '/login',
+  createValidator().query(loginReqPayloadSchema),
+  loginHandler
+);
 
 export default router;

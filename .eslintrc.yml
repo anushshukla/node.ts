@@ -1,79 +1,79 @@
 root: true
-parser: "@typescript-eslint/parser"
+parser: '@typescript-eslint/parser'
 env:
   browser: false
   node: true
   es2021: true
 plugins:
-  - "@typescript-eslint"
-  - "sonarjs"
-  - "prettier"
+  - '@typescript-eslint'
+  - 'sonarjs'
+  - 'prettier'
 extends:
-  - "eslint:recommended"
-  - "plugin:@typescript-eslint/eslint-recommended"
-  - "plugin:@typescript-eslint/recommended"
-  - "plugin:sonarjs/recommended"
-  - "prettier"
+  - 'eslint:recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+  - 'plugin:sonarjs/recommended'
+  - 'prettier'
 parserOptions:
   ecmaVersion: latest
   sourceType: module
 ignorePatterns:
-  - "@types/**"
+  - '@types/**'
 rules:
-    # Override default settings
-    prettier/prettier: 2
-    "@typescript-eslint/no-unused-vars":
-      - error
-      - args: after-used
-        argsIgnorePattern: ^_
-    no-unused-vars: 0 # @typescript-eslint/no-unused-vars rules takes care of this
-    eqeqeq: 2 # Refer https://eslint.org/docs/rules/eqeqeq
-    no-console: 2 # Refer https://eslint.org/docs/rules/no-console
-    max-lines:
-      - error
-      - max: 300
-        skipBlankLines: true
-        skipComments: true
-    max-statements:
-      - error
-      - 10
-      - ignoreTopLevelFunctions: true
-    max-depth:
-      - error
-      - 4
-    max-lines-per-function:
-      - error
-      - max: 50
-        skipBlankLines: true
-        skipComments: true
-    max-nested-callbacks:
-      - error
-      - max: 10
-    max-params:
-      - error
-      - max: 3
-    complexity:
-      - error
-      - 2
-    curly:
-      - error
-      - all
-    no-unneeded-ternary: 2 # Refer https://eslint.org/docs/rules/no-unneeded-ternary
-    no-nested-ternary: 2 # Refer https://eslint.org/docs/rules/no-nested-ternary
-    no-unnecessary-type-assertion: 2 # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
-    no-angle-bracket-type-assertion: 2 # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-angle-bracket-type-assertion.md
-    no-object-literal-type-assertion: # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-object-literal-type-assertion.md
-      - 2
-      - allow-arguments: true
-    consistent-type-assertions: # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
-      - error
-      - assertionStyle: as
-        objectLiteralTypeAssertions: never
-    camelcase: # Refer https://eslint.org/docs/rules/camelcase
-      - error
-      - properties: always
-        ignoreDestructuring: false
-        ignoreImports: false
-        ignoreGlobals: false
-        allow:
-          - ''
+  # Override default settings
+  prettier/prettier: 2
+  '@typescript-eslint/no-unused-vars':
+    - error
+    - args: after-used
+      argsIgnorePattern: ^_
+  no-unused-vars: 0 # @typescript-eslint/no-unused-vars rules takes care of this
+  eqeqeq: 2 # Refer https://eslint.org/docs/rules/eqeqeq
+  no-console: 2 # Refer https://eslint.org/docs/rules/no-console
+  max-lines:
+    - error
+    - max: 300
+      skipBlankLines: true
+      skipComments: true
+  max-statements:
+    - error
+    - 10
+    - ignoreTopLevelFunctions: true
+  max-depth:
+    - error
+    - 4
+  max-lines-per-function:
+    - error
+    - max: 50
+      skipBlankLines: true
+      skipComments: true
+  max-nested-callbacks:
+    - error
+    - max: 10
+  max-params:
+    - error
+    - max: 3
+  complexity:
+    - error
+    - 2
+  curly:
+    - error
+    - all
+  no-unneeded-ternary: 2 # Refer https://eslint.org/docs/rules/no-unneeded-ternary
+  no-nested-ternary: 2 # Refer https://eslint.org/docs/rules/no-nested-ternary
+  no-unnecessary-type-assertion: 2 # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
+  no-angle-bracket-type-assertion: 2 # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-angle-bracket-type-assertion.md
+  no-object-literal-type-assertion: # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-object-literal-type-assertion.md
+    - 2
+    - allow-arguments: true
+  consistent-type-assertions: # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
+    - error
+    - assertionStyle: as
+      objectLiteralTypeAssertions: never
+  camelcase: # Refer https://eslint.org/docs/rules/camelcase
+    - error
+    - properties: always
+      ignoreDestructuring: false
+      ignoreImports: false
+      ignoreGlobals: false
+      allow:
+        - ''
