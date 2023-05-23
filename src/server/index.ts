@@ -1,82 +1,70 @@
-import path from 'path';
 import express from 'express';
 import cors from 'cors';
 import compression from 'compression';
 import helmet from 'helmet';
 import timeout from 'connect-timeout';
-import compression from 'compression';
 // code imports
-import initEnv from "@src/utils/init-env";
-import getEnv from "@src/utils/get-env";
-import routes from '@server/routes';
-import logRequests from '@server/middleware/log-request';
-import getLogger from '@utils/logger';
-import errorHander from '@src/error-handler';
+import initEnv from "@utils/init-env";
+import getEnv from "@utils/get-env";
+import routes from '@server/api/routes';
+import logRequests from '@server/api/middleware/log-request';
+import getLogger from '@utils/get-logger';
+import errorHander from '@server/controller/error-handler';
+import notFoundHandler from '@server/controller/not-found-handler';
+import handleUncaughtException from '@utils/handle-uncaught-exception';
+import catchUnhandledException from '@utils/catch-unhandled-exception';
+import addRequestId from '@src/server/api/middleware/add-request-id';
+import {CHARSET_UTF_8, CONTENT_TYPE, HttpStatusCode, SIZE_100_KB} from '@src/constants';
 
 initEnv();
-const logger = getLogger('src/server/index');
+const logger = getLogger(__filename);
 const server = express();
 
 // Add global middlewares.
-// @ToDo replace the below response compression by implementing reverse proxy
-server.use(compression());
-server.use(cors({
-  origin: getEnv("CORS_ORIGIN"),
-  optionsSuccessStatus: 200,
-  maxAge: Number(getEnv("CORS_MAXAGE"))
-}));
-server.use(helmet());
-server.use(express.json({
-  defaultCharset: "utf-8",
-  inflate: true,
-  limit: "100kb",
-  type: "application/json",
-  reviver: null
-}));
-server.use(express.text({
-  defaultCharset: "utf-8",
-  inflate: true,
-  limit: "100kb",
-  type: "text/plain"
-}));
-server.use(express.raw({
-  inflate: true,
-  limit: "100kb",
-  type: "application/octet-stream"
-}));
-server.use(express.static({
-  dotfiles: "ignore",
-  etag: true,
-  extensions: false,
-  fallthrough: true,
-  immutable: false,
-  index: "index.html",
-  lastModified: true,
-  maxAge: 0,
-  redirect: true,
-  setHeaders: function setStaticHeaders(response, path, stat) {
-    response.set('x-timestamp', Date.now())
-  }
-}));
-app.use(compression())
-server.use(timeout('5s'));
-server.use(logRequests);
+const globalMiddlewares = [
+  // @ToDo replace the below response compression by implementing reverse proxy
+  compression({ default: 16384, threshold: "1kb" }),
+  cors({
+    optionsSuccessStatus: HttpStatusCode.OK,
+    origin: getEnv("CORS_ORIGIN") as string,
+    maxAge: getEnv("CORS_MAXAGE") as number,
+  }),
+  // security
+  helmet(),
+  express.json({
+    inflate: true,
+    limit: SIZE_100_KB,
+    type: CONTENT_TYPE.APPLICATION_JSON,
+    strict: true,
+  }),
+  express.text({
+    defaultCharset: CHARSET_UTF_8,
+    inflate: true,
+    limit: SIZE_100_KB,
+    type: CONTENT_TYPE.TEXT_PLAIN
+  }),
+  express.raw({
+    inflate: true,
+    limit: SIZE_100_KB,
+    type: CONTENT_TYPE.APPLICATION_OCTET_STREAM
+  }),
+  timeout('3s'),
+  express.static('test'),
+  addRequestId,
+  logRequests
+];
+
+for (const middleware in globalMiddlewares) {
+  server.use(middleware);
+}
+
 // server.use(addLocale);
 // server.use(responseEnhancer);
-server.use((_req, _res, next) => next(new NotFoundError())); // 404 Page Not Found
+server.use(notFoundHandler); // 404 Page Not Found
 server.use(errorHander);
 server.use(routes);
 
-const httpServer = server.listen(3000);
+process.on('unhandledRejection', catchUnhandledException);
+process.on('uncaughtException', handleUncaughtException);
 
-httpServer.on("close", () => {
-  logger.info('Http server closed');
-})
-
-httpServer.on("error", (error: Error) => {
-  logger.error(error, 'Http server error');
-})
-
-httpServer.on("listening", () => {
-  logger.info(`Http server started listening on port ${process.env.PORT}`);
-})
+export default server;

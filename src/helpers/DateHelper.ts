@@ -1,18 +1,26 @@
 export default class DateHelper {
-    private currentUtc: string;
-    public generateCurrentUtc(): this {
-        this.currentUtc = new Date().toISOString();
-        return this;
+    private _currentUtc: string;
+
+    constructor(currentUtc: string) {
+        this._currentUtc = currentUtc;
     }
+
+    public static generateCurrentUtc(): string {
+        return new Date().toISOString();
+    }
+
     public getCurrentUtc(): string {
-        return this.currentUtc;
+        return this._currentUtc;
     }
+
     public toStandardDateFormat() {
-        return this.currentUtc.slice(0, 10);
+        return this._currentUtc.slice(0, 10);
     }
+
     public toStandardDateTimeFormat() {
-        return this.currentUtc.slice(0, 19).replace('T', ' ');
+        return this._currentUtc.slice(0, 19).replace('T', ' ');
     }
+
     public fetchCalendarInviteFormat(date: Date): string {
         return date.toISOString().replace(/[-:]/g, '');
     }

@@ -1,8 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { logger as parentLogger } from '@utils/get-logger';
-const logger = parentLogger.child({
-  filepath: __filename
-});
+import getLogger from '@utils/get-logger';
+
+const logger = getLogger(__filename);
 
 const blacklistedPaths = ['/health', '/'];
 
@@ -22,7 +21,7 @@ export default (
         path: request.path,
         query: request.query,
         params: request.params,
-        context: request.context,
+        // context: request.context,
         headers: request.headers,
         body: request.body as Buffer
       },

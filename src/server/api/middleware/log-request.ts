@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import getLogger from 'utils/logger';
+import getLogger from '@utils/get-logger';
 
-const logger = getLogger('src/middleware/logRequests');
+const logger = getLogger(__filename);
 
 export default (
   request: Request,

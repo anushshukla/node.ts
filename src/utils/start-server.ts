@@ -1,20 +1,27 @@
-import initEnv from "@src/utils/init-env";
-import getEnv from "@src/utils/get-env";
+import initEnv from "@utils/init-env";
+import getEnv from "@utils/get-env";
 initEnv();
-import app from '@src/app';
-import parentLogger from "@src/utils/get-logger";
-import connectDatabases from "@src/utils/connect-database";
+import server from '@server/index';
+import getLogger from "@utils/get-logger";
+import connectDatabases from "@utils/connect-databases";
 
 const port = getEnv("PORT");
-const logger = parentLogger.child({
-  filepath: __filename,
-});
+const logger = getLogger(__filename);
 
 export default async function startServer() {
   await connectDatabases(["mongo"]);
-  app.listen(port, () => {
-    logger.info({ port }, 'server started');
-  }).on('error', (error) => {
-      logger.info(error, 'server crashed');
-  });
+
+  const httpServer = server.listen(3000);
+
+  httpServer.on("close", () => {
+    logger.info('HTTP server closed');
+  })
+
+  httpServer.on("error", (error: Error) => {
+    logger.error(error, 'HTTP server error');
+  })
+
+  httpServer.on("listening", () => {
+    logger.info(`HTTP server started listening on port ${process.env.PORT}`);
+  })
 }

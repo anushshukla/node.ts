@@ -1,7 +1,7 @@
-export default function getSafeParsedJson<T>(string: string): [Error | null, T | undefined] {
+export default function getSafeParsedJson<T>(string: string): [Error | null, T?] {
   try {
     return [null, JSON.parse(string)];
   } catch (error) {
-    return [error];
+    return [error as Error];
   }
 };

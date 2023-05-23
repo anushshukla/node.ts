@@ -1,10 +1,8 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import getAxiosResponseLog from '@utils/get-axios-response-log';
-import { logger as parentLogger } from './get-logger';
+import getLogger from './get-logger';
 
-const logger = parentLogger.child({
-  filepath: __filename
-});
+const logger = getLogger(__filename);
 
 axios.interceptors.request.use((config: any) => {
   if (!config.url) {

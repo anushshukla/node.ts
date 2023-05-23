@@ -1,7 +1,6 @@
 import fnsFormat from 'date-fns-tz/format';
 import utcToZonedTime from 'date-fns-tz/utcToZonedTime';
-
-import { DEFAULT_TIME_ZONE } from '@constants/common';
+import { DEFAULT_TIME_ZONE } from '@src/constants';
 import DateHelper from '@helpers/DateHelper';
 
 export enum DateFormat {
@@ -18,4 +17,4 @@ export const format = (
     timeZone
   });
 
-export const dateHelper = (): DateHelper => new DateHelper();
+export const dateHelper = (): DateHelper => new DateHelper(DateHelper.generateCurrentUtc());

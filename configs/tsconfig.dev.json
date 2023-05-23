@@ -1,5 +1,0 @@
-/* Visit https://www.typescriptlang.org/tsconfig to read more about this file */
-{
-  /* Top Level */
-  "extends": "./tsconfig.json"
-}
