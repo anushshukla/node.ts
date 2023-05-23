@@ -17,7 +17,7 @@ export default (
         query: request.query,
         params: request.params,
         headers: request.headers,
-        body: request.body as Buffer
+        body: request.body as Buffer,
       },
       'Request'
     );
@@ -30,10 +30,10 @@ export default (
         duration: endTime - startTime,
         status: {
           code: response.statusCode,
-          message: response.statusMessage
+          message: response.statusMessage,
         },
         locals: response.locals,
-        headers: response.getHeaders()
+        headers: response.getHeaders(),
       },
       'Response'
     );

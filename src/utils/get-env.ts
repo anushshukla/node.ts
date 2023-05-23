@@ -6,22 +6,22 @@ type EnvValues = string | number | boolean | undefined;
  * @returns {EnvValue} environment value fetched from the process environment
  */
 export default function getEnv(
-    key: string,
-    defaultValue?: EnvValues
+  key: string,
+  defaultValue?: EnvValues
 ): EnvValues {
-    const env = process.env[key];
-    if (!env) {
-        return defaultValue;
-    }
-    if (env.toLowerCase() === "true") {
-        return true;
-    }
-    if (env.toLowerCase() === "false") {
-        return false;
-    }
-    if (!isNaN(+env)) {
-        return +env;
-    }
+  const env = process.env[key];
+  if (!env) {
+    return defaultValue;
+  }
+  if (env.toLowerCase() === 'true') {
+    return true;
+  }
+  if (env.toLowerCase() === 'false') {
+    return false;
+  }
+  if (!isNaN(+env)) {
+    return +env;
+  }
 
-    return env;
+  return env;
 }

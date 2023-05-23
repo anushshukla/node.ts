@@ -1,5 +1,5 @@
 import getLogger from '@utils/get-logger';
-import {Request,Response} from 'express';
+import { Request, Response } from 'express';
 
 const logger = getLogger(__filename);
 
@@ -8,10 +8,8 @@ export default function errorHandler(
   __: Request,
   response: Response
 ): Response {
-  return response.status(404).json(
-    {
-      message: 'API not found',
-      error: null
-    }
-  );
-};
+  return response.status(404).json({
+    message: 'API not found',
+    error: null,
+  });
+}

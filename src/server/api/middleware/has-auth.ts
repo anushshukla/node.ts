@@ -4,7 +4,7 @@ import getLogger from '@utils/get-logger';
 const logger = getLogger(__filename);
 
 interface InvalidAuthResponse {
-    message: string;
+  message: string;
 }
 
 export default (
@@ -12,10 +12,10 @@ export default (
   response: Response,
   next: NextFunction
 ): void | Response<InvalidAuthResponse> => {
-    if (!request.headers.authorization) {
-        logger.error('Invalid authorization request!');
-        return response.status(403).json({ message: 'Invalid authorization'});
-    }
+  if (!request.headers.authorization) {
+    logger.error('Invalid authorization request!');
+    return response.status(403).json({ message: 'Invalid authorization' });
+  }
 
-    return next();
+  return next();
 };

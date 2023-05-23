@@ -1,8 +1,8 @@
-import mongoose, { Connection } from "mongoose";
-import ConnectionSingletonAbstractClass from "@helpers/ConnectionSingletonAbstractClass";
-import getEnv from "@utils/get-env";
-import safePromise from "@utils/safe-promise";
-import getLogger from "@utils/get-logger";
+import mongoose, { Connection } from 'mongoose';
+import ConnectionSingletonAbstractClass from '@helpers/ConnectionSingletonAbstractClass';
+import getEnv from '@utils/get-env';
+import safePromise from '@utils/safe-promise';
+import getLogger from '@utils/get-logger';
 
 const logger = getLogger(__filename);
 
@@ -26,21 +26,21 @@ export class MongoClient extends ConnectionSingletonAbstractClass<Connection> {
 
     const [connectionError, mongo] = await safePromise<Connection>(
       mongoose
-        .set("debug", getEnv("MONGO_ALLOW_DEBUG") as boolean)
-        .createConnection(getEnv("MONGO_HOST") as string)
+        .set('debug', getEnv('MONGO_ALLOW_DEBUG') as boolean)
+        .createConnection(getEnv('MONGO_HOST') as string)
         .asPromise()
     );
 
     if (connectionError) {
-      logger.error(connectionError, "connectionError");
+      logger.error(connectionError, 'connectionError');
       throw connectionError;
     }
 
     if (!mongo) {
-      throw new Error("connection not established");
+      throw new Error('connection not established');
     }
 
-    logger.info("Mongo connected!");
+    logger.info('Mongo connected!');
     this._connection = mongo;
     return this._connection;
   }
@@ -52,21 +52,21 @@ export class MongoClient extends ConnectionSingletonAbstractClass<Connection> {
   // eslint-disable-next-line complexity
   public async disconnect(): Promise<void> {
     if (!this._connection) {
-      throw new Error("MongoDB connection not yet initiated");
+      throw new Error('MongoDB connection not yet initiated');
     }
 
     if (this._connection.readyState === 0) {
-      throw new Error("MongoDB is disconnected");
+      throw new Error('MongoDB is disconnected');
     }
 
     if (this._connection.readyState === 3) {
-      throw new Error("MongoDB is disconnecting");
+      throw new Error('MongoDB is disconnecting');
     }
 
     const [connectionCloseError] = await safePromise(this._connection.close());
 
     if (connectionCloseError) {
-      logger.error(connectionCloseError, "connectionCloseError");
+      logger.error(connectionCloseError, 'connectionCloseError');
       throw connectionCloseError;
     }
   }

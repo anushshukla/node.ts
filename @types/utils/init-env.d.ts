@@ -1,1 +1,1 @@
-export default function initEnv(): void;
+export default function initEnv(): void

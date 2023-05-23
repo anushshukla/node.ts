@@ -5,7 +5,7 @@ import DateHelper from '@helpers/DateHelper';
 
 export enum DateFormat {
   DD_MMM_YYYY_HH_mm = 'dd MMM yyyy hh:mm a (OOO)',
-  DD_MMM_YYYY = 'dd MMM yyy'
+  DD_MMM_YYYY = 'dd MMM yyy',
 }
 
 export const format = (
@@ -14,7 +14,8 @@ export const format = (
   timeZone: string = DEFAULT_TIME_ZONE
 ): string =>
   fnsFormat(utcToZonedTime(date, timeZone), dateFormat, {
-    timeZone
+    timeZone,
   });
 
-export const dateHelper = (): DateHelper => new DateHelper(DateHelper.generateCurrentUtc());
+export const dateHelper = (): DateHelper =>
+  new DateHelper(DateHelper.generateCurrentUtc());

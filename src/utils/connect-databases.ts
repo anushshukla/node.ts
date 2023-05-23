@@ -1,6 +1,6 @@
-import MySqlClient from "@databases/MySqlClient";
-import MongoClient from "@databases/MongoClient";
-import RedisClient from "@databases/RedisClient";
+import MySqlClient from '@databases/MySqlClient';
+import MongoClient from '@databases/MongoClient';
+import RedisClient from '@databases/RedisClient';
 
 const dbConnectorMapper = {
   mysql: MySqlClient,

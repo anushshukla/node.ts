@@ -1,4 +1,4 @@
-import SingletonClass from "@helpers/SingletonClass";
+import SingletonClass from '@helpers/SingletonClass';
 
 export default abstract class ConnectionSingletonAbstractClass<
   Connection

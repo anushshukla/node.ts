@@ -9,8 +9,7 @@ export const CONTEXT_REQUEST_ID_NAME = 'reqUuid';
 const session = createNamespace(NAMESPACE_NAME);
 
 export const getRequestId = (): string => {
-  const requestId = session.get(CONTEXT_REQUEST_ID_NAME) as string;
-  return requestId;
+  return session.get(CONTEXT_REQUEST_ID_NAME) as string;
 };
 
 export default (

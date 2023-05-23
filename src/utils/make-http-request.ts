@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import getAxiosResponseLog from '@utils/get-axios-response-log';
-import getLogger from './get-logger';
+import getLogger from '@utils/get-logger';
 
 const logger = getLogger(__filename);
 
@@ -14,7 +14,7 @@ axios.interceptors.request.use((config: any) => {
 
   return {
     ...config,
-    url: config.url
+    url: config.url,
   };
 });
 
@@ -27,7 +27,7 @@ export const makeHttpCall = (
       logger.info(
         {
           request,
-          response: getAxiosResponseLog(response)
+          response: getAxiosResponseLog(response),
         },
         'HTTP Request-Response'
       );
@@ -39,7 +39,7 @@ export const makeHttpCall = (
           request,
           response: error?.response
             ? getAxiosResponseLog(error.response)
-            : error?.message
+            : error?.message,
         },
         'HTTP Request-Response'
       );

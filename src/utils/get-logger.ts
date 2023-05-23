@@ -1,27 +1,27 @@
-import pino, {ChildLoggerOptions} from "pino";
-import getEnv from "@utils/get-env";
+import pino, { ChildLoggerOptions } from 'pino';
+import getEnv from '@utils/get-env';
 // import { dateHelper } from '@utils/date-helper';
 
 export const logger = pino({
-  name: getEnv("APP_NAME") as string,
-  level: getEnv("LOGGER_LEVEL", "info") as string,
-  prettyPrint: getEnv("LOGGER_PRETTY", false)
+  name: getEnv('APP_NAME') as string,
+  level: getEnv('LOGGER_LEVEL', 'info') as string,
+  prettyPrint: getEnv('LOGGER_PRETTY', false)
     ? {
         colorize: true,
-        errorLikeObjectKeys: ["err", "error"],
-        errorProps: "",
+        errorLikeObjectKeys: ['err', 'error'],
+        errorProps: '',
         levelFirst: false,
-        messageKey: "msg",
-        levelKey: "level",
+        messageKey: 'msg',
+        levelKey: 'level',
         messageFormat: false,
-        timestampKey: "time",
+        timestampKey: 'time',
         translateTime: false,
-        ignore: "pid,hostname",
+        ignore: 'pid,hostname',
         hideObject: false,
         singleLine: false,
       }
     : false,
-  messageKey: "message",
+  messageKey: 'message',
   formatters: {
     level: (label: string) => ({ level: label }),
   },
@@ -38,7 +38,9 @@ export const logger = pino({
   // `,"time":"${dateHelper().generateCurrentUtc().getCurrentUtc()}"`
 });
 
-
-export default function getLogger(filePath: string, options = {} as Omit<ChildLoggerOptions, 'key'>): pino.Logger<ChildLoggerOptions> {
+export default function getLogger(
+  filePath: string,
+  options = {} as Omit<ChildLoggerOptions, 'key'>
+): pino.Logger<ChildLoggerOptions> {
   return logger.child({ key: filePath, ...options });
 }

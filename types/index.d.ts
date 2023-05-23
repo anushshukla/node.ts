@@ -1,4 +1,3 @@
 declare module 'http' {
-    interface IncomingHttpHeaders {
-    }
-  }
+  interface IncomingHttpHeaders {}
+}

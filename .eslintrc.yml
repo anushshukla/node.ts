@@ -1,15 +1,24 @@
 root: true
 parser: "@typescript-eslint/parser"
 env:
+  browser: false
   node: true
+  es2021: true
 plugins:
   - "@typescript-eslint"
-  - prettier
+  - "sonarjs"
+  - "prettier"
 extends:
-  - eslint:recommended
+  - "eslint:recommended"
   - "plugin:@typescript-eslint/eslint-recommended"
   - "plugin:@typescript-eslint/recommended"
-  - prettier  
+  - "plugin:sonarjs/recommended"
+  - "prettier"
+parserOptions:
+  ecmaVersion: latest
+  sourceType: module
+ignorePatterns:
+  - "@types/**"
 rules:
     # Override default settings
     prettier/prettier: 2
@@ -54,7 +63,7 @@ rules:
     no-unnecessary-type-assertion: 2 # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unnecessary-type-assertion.md
     no-angle-bracket-type-assertion: 2 # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-angle-bracket-type-assertion.md
     no-object-literal-type-assertion: # Refer https://github.com/bradzacher/eslint-plugin-typescript/blob/master/docs/rules/no-object-literal-type-assertion.md
-      - true
+      - 2
       - allow-arguments: true
     consistent-type-assertions: # Refer https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/consistent-type-assertions.md
       - error
