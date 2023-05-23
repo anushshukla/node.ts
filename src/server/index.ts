@@ -8,7 +8,6 @@ import initEnv from '@utils/init-env';
 import getEnv from '@utils/get-env';
 import routes from '@server/api/routes';
 import logRequests from '@server/api/middleware/log-request';
-import getLogger from '@utils/get-logger';
 import errorHander from '@server/controller/error-handler';
 import notFoundHandler from '@server/controller/not-found-handler';
 import handleUncaughtException from '@utils/handle-uncaught-exception';
@@ -20,9 +19,10 @@ import {
   HttpStatusCode,
   SIZE_100_KB,
 } from '@src/constants';
+import loadApiDocsRoute from '@src/server/api/routes/route.api-docs';
 
 initEnv();
-const logger = getLogger(__filename);
+
 const server = express();
 
 // Add global middlewares.
@@ -67,6 +67,8 @@ for (const middleware in globalMiddlewares) {
 // server.use(responseEnhancer);
 server.use(notFoundHandler); // 404 Page Not Found
 server.use(errorHander);
+
+loadApiDocsRoute(server);
 server.use(routes);
 
 process.on('unhandledRejection', catchUnhandledException);

@@ -1,1 +1,1 @@
-export default function catchUnhandledException(error: Error): void
+export default function catchUnhandledException(error: Error): void;

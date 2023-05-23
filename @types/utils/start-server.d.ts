@@ -1,1 +1,1 @@
-export default function startServer(): Promise<void>
+export default function startServer(): Promise<void>;
