@@ -1,5 +1,5 @@
 import path from 'path';
-import { createConnection, Connection } from 'typeorm';
+import { DataSource } from 'typeorm';
 import ConnectionSingletonAbstractClass from '@helpers/ConnectionSingletonAbstractClass';
 import getEnv from '@utils/get-env';
 import safePromise from '@utils/safe-promise';
@@ -9,14 +9,14 @@ import getLogger from '@utils/get-logger';
 const logger = getLogger(__filename);
 
 // eslint-disable-next-line max-len
-export default abstract class SqlConnectionSingletonAbstractClass extends ConnectionSingletonAbstractClass<Connection> {
-  protected _connection = {} as Connection;
+export default abstract class SqlConnectionSingletonAbstractClass extends ConnectionSingletonAbstractClass<DataSource> {
+  protected _connection = {} as DataSource;
   protected abstract _name: string;
   protected abstract _type: string;
   protected abstract _connectionUrl: string;
   protected _slaves?: SqlUrlComponentsInterface[];
 
-  public get connection(): Connection {
+  public get connection(): DataSource {
     return this._connection;
   }
 
@@ -25,7 +25,7 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
    * @returns {Promise<any>}
    */
   // eslint-disable-next-line max-lines-per-function, complexity, max-statements
-  public async connect(): Promise<Connection> {
+  public async connect(): Promise<DataSource> {
     if (this._connection) {
       return this._connection;
     }
@@ -43,8 +43,8 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
       url = this._connectionUrl;
     }
 
-    const [connectionError, connection] = await safePromise<Connection>(
-      createConnection({
+    const [connectionError, connection] = await safePromise<DataSource>(
+      new DataSource({
         name: this._name,
         type: 'postgres',
         host: 'localhost',
