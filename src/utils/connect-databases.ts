@@ -1,8 +1,10 @@
 import MySqlClient from '@databases/MySqlClient';
+import PgsqlClient from '@databases/PgsqlClient';
 import MongoClient from '@databases/MongoClient';
 import RedisClient from '@databases/RedisClient';
 
 const dbConnectorMapper = {
+  psql: PgsqlClient,
   mysql: MySqlClient,
   mongo: MongoClient,
   redis: RedisClient,
