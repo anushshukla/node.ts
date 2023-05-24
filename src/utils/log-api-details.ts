@@ -5,11 +5,7 @@ const logger = getLogger(__filename);
 
 const blacklistedPaths = ['/health', '/'];
 
-export default (
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void => {
+export default (request: Request, response: Response, next: NextFunction): void => {
   if (blacklistedPaths.includes(request.path)) {
     return;
   }
@@ -25,7 +21,7 @@ export default (
         headers: request.headers,
         body: request.body as Buffer,
       },
-      'Request'
+      'Request',
     );
   });
   response.on('finish', () => {
@@ -41,7 +37,7 @@ export default (
         locals: response.locals,
         headers: response.getHeaders(),
       },
-      'Response'
+      'Response',
     );
   });
 

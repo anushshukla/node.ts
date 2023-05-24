@@ -7,12 +7,7 @@ import { UnprocessableEntry } from 'helpers/ApplicationError';
 const logger = getLogger(__filename);
 
 // Only errors that arise from an exception in the system should be logged.
-export default (
-  error: Error | ExpressJoiError,
-  __: Request,
-  response: Response,
-  _: NextFunction
-): Response => {
+export default (error: Error | ExpressJoiError, __: Request, response: Response, _: NextFunction): Response => {
   const joiError = error as ExpressJoiError;
   if (error instanceof UnprocessableEntry) {
     return response.status(HttpStatusCode.UNPROCESSABLE_ENTRY).send({

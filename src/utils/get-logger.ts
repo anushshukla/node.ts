@@ -40,7 +40,7 @@ export const logger = pino({
 
 export default function getLogger(
   filePath: string,
-  options = {} as Omit<ChildLoggerOptions, 'key'>
+  options = {} as Omit<ChildLoggerOptions, 'key'>,
 ): pino.Logger<ChildLoggerOptions> {
   return logger.child({ key: filePath, ...options });
 }

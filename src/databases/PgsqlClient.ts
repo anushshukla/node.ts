@@ -6,9 +6,7 @@ export class PgsqlClient extends PgsqlConnectionSingletonAbstractClass {
   protected _name = 'default';
   protected _type = 'postgres';
   protected _connectionUrl = getEnv('MYSQL_URL') as string;
-  protected _slaves = getMysqlUrlComponents(
-    getEnv('MYSQL_REPLICA_URLS') as string
-  );
+  protected _slaves = getMysqlUrlComponents(getEnv('MYSQL_REPLICA_URLS') as string);
 }
 
 export default PgsqlClient;

@@ -8,14 +8,9 @@ export enum DateFormat {
   DD_MMM_YYYY = 'dd MMM yyy',
 }
 
-export const format = (
-  date: Date,
-  dateFormat: DateFormat,
-  timeZone: string = DEFAULT_TIME_ZONE
-): string =>
+export const format = (date: Date, dateFormat: DateFormat, timeZone: string = DEFAULT_TIME_ZONE): string =>
   fnsFormat(utcToZonedTime(date, timeZone), dateFormat, {
     timeZone,
   });
 
-export const dateHelper = (): DateHelper =>
-  new DateHelper(DateHelper.generateCurrentUtc());
+export const dateHelper = (): DateHelper => new DateHelper(DateHelper.generateCurrentUtc());

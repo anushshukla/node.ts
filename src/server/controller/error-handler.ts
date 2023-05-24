@@ -11,7 +11,7 @@ export default function errorHandler(
   error: Error | ExpressJoiError,
   __: Request,
   response: Response,
-  _: NextFunction
+  _: NextFunction,
 ): Response {
   const joiError = error as ExpressJoiError;
   if (error instanceof UnprocessableEntry) {

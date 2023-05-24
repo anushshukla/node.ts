@@ -6,9 +6,7 @@ export interface SqlUrlComponentsInterface {
   port?: number;
 }
 
-export default function getSqlUrlComponents(
-  mysqlConnectionUrl: string
-): SqlUrlComponentsInterface[] {
+export default function getSqlUrlComponents(mysqlConnectionUrl: string): SqlUrlComponentsInterface[] {
   const mysqlDbNameSplit = mysqlConnectionUrl.split('/');
   const database = mysqlDbNameSplit[1];
   const mysqlCredsHostSplit = mysqlDbNameSplit[0].split('@');

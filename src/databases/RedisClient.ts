@@ -1,8 +1,4 @@
-import IORedis, {
-  Cluster as RedisCluster,
-  Redis as RedisStandalone,
-  RedisOptions,
-} from 'ioredis';
+import IORedis, { Cluster as RedisCluster, Redis as RedisStandalone, RedisOptions } from 'ioredis';
 import ConnectionSingletonAbstractClass from '@helpers/ConnectionSingletonAbstractClass';
 import getEnv from '@utils/get-env';
 import getLogger from '@utils/get-logger';

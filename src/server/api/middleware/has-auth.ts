@@ -7,11 +7,7 @@ interface InvalidAuthResponse {
   message: string;
 }
 
-export default (
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void | Response<InvalidAuthResponse> => {
+export default (request: Request, response: Response, next: NextFunction): void | Response<InvalidAuthResponse> => {
   if (!request.headers.authorization) {
     logger.error('Invalid authorization request!');
     return response.status(403).json({ message: 'Invalid authorization' });

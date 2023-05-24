@@ -28,7 +28,7 @@ export class MongoClient extends ConnectionSingletonAbstractClass<Connection> {
       mongoose
         .set('debug', getEnv('MONGO_ALLOW_DEBUG') as boolean)
         .createConnection(getEnv('MONGO_HOST') as string)
-        .asPromise()
+        .asPromise(),
     );
 
     if (connectionError) {

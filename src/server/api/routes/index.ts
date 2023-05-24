@@ -11,12 +11,7 @@ import notFoundHandler from '@server/controller/not-found-handler';
 import handleUncaughtException from '@utils/handle-uncaught-exception';
 import catchUnhandledException from '@utils/catch-unhandled-exception';
 import addRequestId from '@src/server/api/middleware/add-request-id';
-import {
-  CHARSET_UTF_8,
-  CONTENT_TYPE,
-  HttpStatusCode,
-  SIZE_100_KB,
-} from '@src/constants';
+import { CHARSET_UTF_8, CONTENT_TYPE, HttpStatusCode, SIZE_100_KB } from '@src/constants';
 import loadApiDocsRoute from '@src/server/api/routes/route.api-docs';
 import healthRoute from '@server/api/routes/route.health';
 import probesRoutes from '@server/api/routes/routes.probes';

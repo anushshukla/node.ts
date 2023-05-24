@@ -3,9 +3,7 @@ import {
   // Creates a validator that generates middlewares
   createValidator,
 } from 'express-joi-validation';
-import loginHandler, {
-  loginReqPayloadSchema,
-} from '@server/controller/login-handler';
+import loginHandler, { loginReqPayloadSchema } from '@server/controller/login-handler';
 
 const router = Router();
 
@@ -22,10 +20,6 @@ const router = Router();
  * @param {LoginReqPayload} request.body.required - Login Request Payload
  * @return {object} 200 - success response
  */
-router.post(
-  '/login',
-  createValidator().query(loginReqPayloadSchema),
-  loginHandler
-);
+router.post('/login', createValidator().query(loginReqPayloadSchema), loginHandler);
 
 export default router;

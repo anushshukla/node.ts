@@ -3,11 +3,7 @@ import getLogger from '@utils/get-logger';
 
 const logger = getLogger(__filename);
 
-export default (
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void => {
+export default (request: Request, response: Response, next: NextFunction): void => {
   const startTime = Date.now();
   request.on('close', () => {
     logger.info(
@@ -19,7 +15,7 @@ export default (
         headers: request.headers,
         body: request.body as Buffer,
       },
-      'Request'
+      'Request',
     );
   });
   response.on('finish', () => {
@@ -35,7 +31,7 @@ export default (
         locals: response.locals,
         headers: response.getHeaders(),
       },
-      'Response'
+      'Response',
     );
   });
 

@@ -52,9 +52,7 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
         username: 'postgres',
         password: 'Theeb6uu',
         database: 'typeormdemo',
-        entities: [
-          path.join(__dirname, '..', 'models', 'entities') + '/*{.ts,.js}',
-        ],
+        entities: [path.join(__dirname, '..', 'models', 'entities') + '/*{.ts,.js}'],
         poolSize: getEnv('PGSQL_POOL_MAX', 10) as number,
         synchronize: getEnv('PGSQL_ENABLE_SYNCHRONIZE', false) as boolean,
         cache: {
@@ -63,7 +61,7 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
         logging: getEnv('PGSQL_ENABLE_LOGGING', false) as boolean,
         url: url,
         replication: replication,
-      })
+      }),
     );
 
     if (connectionError) {

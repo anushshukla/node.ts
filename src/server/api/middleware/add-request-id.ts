@@ -12,11 +12,7 @@ export const getRequestId = (): string => {
   return session.get(CONTEXT_REQUEST_ID_NAME) as string;
 };
 
-export default (
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void => {
+export default (request: Request, response: Response, next: NextFunction): void => {
   const namespace = getNamespace(NAMESPACE_NAME);
 
   if (!namespace) {

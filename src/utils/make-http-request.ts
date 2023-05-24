@@ -19,7 +19,7 @@ axios.interceptors.request.use((config: any) => {
 });
 
 export const makeHttpCall = (
-  request: AxiosRequestConfig
+  request: AxiosRequestConfig,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<AxiosResponse<any>> => {
   return axios(request)
@@ -29,7 +29,7 @@ export const makeHttpCall = (
           request,
           response: getAxiosResponseLog(response),
         },
-        'HTTP Request-Response'
+        'HTTP Request-Response',
       );
       return response;
     })
@@ -37,11 +37,9 @@ export const makeHttpCall = (
       logger.error(
         {
           request,
-          response: error?.response
-            ? getAxiosResponseLog(error.response)
-            : error?.message,
+          response: error?.response ? getAxiosResponseLog(error.response) : error?.message,
         },
-        'HTTP Request-Response'
+        'HTTP Request-Response',
       );
       throw error;
     });

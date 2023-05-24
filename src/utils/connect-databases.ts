@@ -11,13 +11,9 @@ const dbConnectorMapper = {
 };
 
 export type DbConnectListType = keyof typeof dbConnectorMapper;
-export const allDbConnectorNames = Object.keys(
-  dbConnectorMapper
-) as DbConnectListType[];
+export const allDbConnectorNames = Object.keys(dbConnectorMapper) as DbConnectListType[];
 
-export default async function connectDatabases(
-  dbConnectorNames: DbConnectListType[]
-): Promise<void> {
+export default async function connectDatabases(dbConnectorNames: DbConnectListType[]): Promise<void> {
   for (const dbConnectorName of dbConnectorNames) {
     const DbClient = dbConnectorMapper[dbConnectorName];
     // eslint-disable-next-line no-await-in-loop

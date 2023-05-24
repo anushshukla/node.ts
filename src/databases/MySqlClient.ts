@@ -6,9 +6,7 @@ export class MySqlClient extends SqlConnectionSingletonAbstractClass {
   protected _name = 'default';
   protected _type = 'mysql';
   protected _connectionUrl = getEnv('MYSQL_URL') as string;
-  protected _slaves = getMysqlUrlComponents(
-    getEnv('MYSQL_REPLICA_URLS') as string
-  );
+  protected _slaves = getMysqlUrlComponents(getEnv('MYSQL_REPLICA_URLS') as string);
 }
 
 export default MySqlClient;

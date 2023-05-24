@@ -8,7 +8,7 @@ describe('login', () => {
     item: 'Drink water',
     completed: false,
   };
-  console.log('hi')
+  console.log('hi');
   beforeAll(async () => {
     await request(baseURL).post('/login').send(newTodo);
   });

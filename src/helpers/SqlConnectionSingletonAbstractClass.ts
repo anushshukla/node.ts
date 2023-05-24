@@ -35,14 +35,8 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
     if (this._slaves) {
       replication = {
         canRetry: !getEnv('MYSQL_REPLICATION_DISABLE_RETRY', false) as boolean,
-        removeNodeErrorCount: getEnv(
-          'MYSQL_REPLICATION_REMOVE_NODE_ERROR_COUNT',
-          5
-        ) as number,
-        restoreNodeTimeout: getEnv(
-          'MYSQL_REPLICATION_RESTORE_NODE_TIMEOUT',
-          0
-        ) as number,
+        removeNodeErrorCount: getEnv('MYSQL_REPLICATION_REMOVE_NODE_ERROR_COUNT', 5) as number,
+        restoreNodeTimeout: getEnv('MYSQL_REPLICATION_RESTORE_NODE_TIMEOUT', 0) as number,
         // selector: getEnv('MYSQL_REPLICATION_SELECTOR', 'RR') as string,
         master: {
           url: this._connectionUrl,
@@ -57,9 +51,7 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
       new DataSource({
         name: this._name,
         type: 'mysql',
-        entities: [
-          path.join(__dirname, '..', 'models', 'entities') + '/*{.ts,.js}',
-        ],
+        entities: [path.join(__dirname, '..', 'models', 'entities') + '/*{.ts,.js}'],
         trace: !getEnv('MYSQL_DISABLE_TRACE', true) as boolean,
         bigNumberStrings: getEnv('MYSQL_ENABLE_BIGINT', true) as boolean,
         synchronize: getEnv('MYSQL_ENABLE_SYNCHRONIZE', false) as boolean,
@@ -75,7 +67,7 @@ export default abstract class SqlConnectionSingletonAbstractClass extends Connec
         },
         url,
         replication,
-      })
+      }),
     );
 
     if (connectionError) {
