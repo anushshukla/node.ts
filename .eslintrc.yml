@@ -19,6 +19,7 @@ parserOptions:
   sourceType: module
 ignorePatterns:
   - '@types/**'
+  - 'node_modules/**'
 rules:
   # Override default settings
   prettier/prettier: 2
