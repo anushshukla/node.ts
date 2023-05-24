@@ -1,4 +1,4 @@
-import type { Config } from '@jest/types';
+import { Config } from '@jest/types';
 
 // Or async function
 export default async (): Promise<Config.InitialOptions> => {
