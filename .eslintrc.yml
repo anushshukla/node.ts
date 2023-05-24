@@ -79,13 +79,13 @@ rules:
       allow:
         - ''
   sort-imports:
-    - error
+    - 2
     - ignoreCase: false
-    - ignoreDeclarationSort: false
-    - ignoreMemberSort: false
-    - memberSyntaxSortOrder:
-      - none
-      - all
-      - multiple
-      - single
-    - allowSeparatedGroups: false
+      ignoreDeclarationSort: false
+      ignoreMemberSort: false
+      memberSyntaxSortOrder:
+        - none
+        - all
+        - multiple
+        - single
+      allowSeparatedGroups: false
