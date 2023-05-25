@@ -1,0 +1,26 @@
+# project dependencies
+node_modules/
+
+# cached packages
+.npm/
+
+# compiled code
+build/
+
+# test coverage report
+coverage/
+
+# application logs
+logs/
+
+# Optional npm cache directory
+.npm/
+
+# environment variables
+.env
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional eslint cache
+.eslintcache
