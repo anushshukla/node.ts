@@ -19,11 +19,10 @@ describe('data-transform', () => {
       address: string;
       phoneNumber: number;
     }
-    const transformedData: TransformedData = dataTransform<
-      typeof transformer,
-      typeof data,
-      TransformedData
-    >(transformer, data);
+    const transformedData: TransformedData = dataTransform<typeof transformer, typeof data, TransformedData>(
+      transformer,
+      data,
+    );
 
     expect(transformedData.name).toEqual(data.firstName);
     expect(transformedData.address).toEqual(data.address.full);
