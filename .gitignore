@@ -16,6 +16,9 @@ logs/
 # Optional npm cache directory
 .npm/
 
+# NPM debug log
+npm-debug.log
+
 # environment variables
 .env
 
@@ -24,3 +27,10 @@ logs/
 
 # Optional eslint cache
 .eslintcache
+
+# Optional OS related files
+## Mac
+**/.DS_Store
+
+# Data Mapper model generation from database using ORM
+output/
