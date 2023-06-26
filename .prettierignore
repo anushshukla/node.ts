@@ -24,3 +24,6 @@ logs/
 
 # Optional eslint cache
 .eslintcache
+
+# Model generation
+output/
