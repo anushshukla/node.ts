@@ -1,0 +1,21 @@
+rebaseMergeAllowed: true
+squashMergeAllowed: true
+mergeCommitAllowed: false
+branchProtectionRules:
+  - pattern: production
+    isAdminEnforced: true
+    requiredApprovingReviewCount: 1
+    requiresCodeOwnerReviews: true
+    requiresStrictStatusChecks: true
+    requiredStatusCheckContexts:
+      - "ci: System test"
+      - lint
+  - pattern: staging
+    isAdminEnforced: true
+    requiredApprovingReviewCount: 2
+    requiresCodeOwnerReviews: true
+    requiresStrictStatusChecks: true
+    requiredStatusCheckContexts:
+      - "ci: System test"
+      - lint
+      

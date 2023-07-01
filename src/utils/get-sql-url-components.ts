@@ -6,18 +6,23 @@ export interface SqlUrlComponentsInterface {
   port?: number;
 }
 
-export default function getSqlUrlComponents(mysqlConnectionUrl: string): SqlUrlComponentsInterface[] {
-  const mysqlDbNameSplit = mysqlConnectionUrl.split('/');
-  const database = mysqlDbNameSplit[1];
-  const mysqlCredsHostSplit = mysqlDbNameSplit[0].split('@');
-  const hostsIndex = mysqlCredsHostSplit.length - 1;
-  const hosts = mysqlCredsHostSplit[hostsIndex];
+// eslint-disable-next-line complexity
+export default function getSqlUrlComponents(sqlConnectionUrl: string): SqlUrlComponentsInterface[] {
+  if (!sqlConnectionUrl) {
+    return [];
+  }
+
+  const sqlDbNameSplit = sqlConnectionUrl.split('/');
+  const database = sqlDbNameSplit[1];
+  const sqlCredsHostSplit = sqlDbNameSplit[0].split('@');
+  const hostsIndex = sqlCredsHostSplit.length - 1;
+  const hosts = sqlCredsHostSplit[hostsIndex];
   let username: string, password: string;
 
   if (hostsIndex) {
-    const mysqlCreds = mysqlCredsHostSplit[0].split(':');
-    username = mysqlCreds[0];
-    password = mysqlCreds[1];
+    const sqlCreds = sqlCredsHostSplit[0].split(':');
+    username = sqlCreds[0];
+    password = sqlCreds[1];
   }
 
   return hosts.split(',').map(host => {

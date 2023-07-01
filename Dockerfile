@@ -1,4 +1,6 @@
-FROM node:14.16.1 as base
+# Ref: https://nodejs.org/en/docs/guides/nodejs-docker-webapp
+
+FROM node:18.16.0 as base
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -7,19 +9,19 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
+COPY .npmrc .npmrc
 
 RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
 # Bundle app source
-COPY .env ./.env
+# COPY .env ./.env
+COPY tsconfig.json ./tsconfig.json
 COPY src ./src
-COPY configs ./configs
-COPY typings ./typings
 
 # Build dist
 RUN npm run build
 
 EXPOSE 3000
-CMD ["npm","run","start"]
+CMD ["npm","run","start:server"]

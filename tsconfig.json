@@ -2,7 +2,7 @@
 {
   /* Top Level */
   "exclude": ["node_modules", "build", "coverage"],
-  "include": ["src/**/*"],
+  "include": ["src/", "src/locales/*.json", "test/"],
   // "files": ["src/server/index.ts"],
   "watchFile": "useFsEvents",
   "watchDirectory": "useFsEvents",
@@ -51,24 +51,22 @@
 
     /* Refer https://www.typescriptlang.org/tsconfig#Modules_6244 */
     "allowUmdGlobalAccess": false,
-    "module": "commonjs",
-    "baseUrl": "src",
-    // "moduleResolution": "node",
+    "module": "NodeNext",
+    "baseUrl": "./",
+    "moduleResolution": "node",
     "noResolve": false,
     "paths": {
-      "@src/*": ["./*"],
-      "@server/*": ["server/*"],
-      "@services/*": ["services/*"],
-      "@databases/*": ["databases/*"],
-      "@models/*": ["models/*"],
-      "@constants": ["constants/"],
-      "@constants/*": ["constants/*"],
-      "@helpers/*": ["helpers/*"],
-      "@utils/*": ["utils/*"]
+      "@services": ["src/shared/services/*"],
+      "@constants": ["src/constants"],
+      "@utils": ["src/utils/*"],
+      "@src": ["src/*"],
+      "@test": ["test/*"],
+      "@model": ["src/model/*"],
+      "@queue": ["src/queue/*"],
     },
-    "resolveJsonModule": false /* Include modules imported with '.json' extension */,
-    "rootDir": "src",
-    "rootDirs": ["src"],
+    "resolveJsonModule": true /* Include modules imported with '.json' extension */,
+    // "rootDir": "src",
+    // "rootDirs": ["src"],
     "typeRoots": ["node_modules/@types", "@types"],
     "types": ["node", "jest", "express"],
 
@@ -121,7 +119,7 @@
     // "jsxFactory": "React.createElement",
     // "jsxFragmentFactory": "Fragment",
     // "jsxImportSource": "react",
-    "lib": ["esnext"],
+    "lib": ["ESNext"],
     "noLib": false,
     "reactNamespace": "",
     "target": "ESNext" /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', or 'ESNEXT'. */,
@@ -141,8 +139,9 @@
     "disableReferencedProjectLoad": false,
     "disableSolutionSearching": false,
     "disableSourceOfProjectReferenceRedirect": false,
-    "incremental": true,
-    "tsBuildInfoFile": ".tsbuildinfo",
+    "incremental": false,
+    // tsBuildInfoFile can be provided if incremental is true
+    // "tsBuildInfoFile": ".tsbuildinfo",
 
     /* Refer https://www.typescriptlang.org/tsconfig#Output_Formatting_6256 */
     "noErrorTruncation": false,

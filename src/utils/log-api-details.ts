@@ -5,7 +5,7 @@ const logger = getLogger(__filename);
 
 const blacklistedPaths = ['/health', '/'];
 
-export default (request: Request, response: Response, next: NextFunction): void => {
+export default function logApiDetails(request: Request, response: Response, next: NextFunction): void {
   if (blacklistedPaths.includes(request.path)) {
     return;
   }
@@ -42,4 +42,4 @@ export default (request: Request, response: Response, next: NextFunction): void 
   });
 
   return next();
-};
+}

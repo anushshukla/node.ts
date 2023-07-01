@@ -1,3 +1,4 @@
-import startServer from '@src/utils/start-server';
+import '@utils/init-env';
+import HttpServer from 'bootstrap/HttpServer';
 
-startServer();
+HttpServer.getInstance().start();

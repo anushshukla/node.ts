@@ -1,10 +1,12 @@
-export type SafePromise<T> = [Error] | [null, T];
+export type SafePromise<ErrorType, SuccessResult> = [ErrorType] | [null, SuccessResult];
 
-export default async function safePromise<T>(promise: Promise<T> | T): Promise<SafePromise<T>> {
+export default async function safePromise<SuccessResult, ErrorType = Error>(
+  promise: Promise<SuccessResult> | SuccessResult,
+): Promise<SafePromise<ErrorType, SuccessResult>> {
   try {
-    const result: T = await promise;
+    const result = await promise;
     return [null, result];
   } catch (error) {
-    return [error as Error];
+    return [error as ErrorType];
   }
 }

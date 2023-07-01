@@ -4,19 +4,23 @@ import getLogger from '@utils/get-logger';
 
 const logger = getLogger(__filename);
 
-axios.interceptors.request.use((config: any) => {
+function axiosInterceptor(config: AxiosRequestConfig) {
   if (!config.url) {
     return config;
   }
-  Object.entries(config.params || {}).forEach(([k, v]) => {
-    config.url = config.url.replace(`{${k}}`, encodeURIComponent(v as any));
+
+  const { params = {} } = config;
+  Object.entries(params).forEach(([keyName, value]) => {
+    config.url = config.url?.replace(`{${keyName}}`, encodeURIComponent(value as string));
   });
 
   return {
     ...config,
     url: config.url,
   };
-});
+}
+
+axios.interceptors.request.use(axiosInterceptor);
 
 export const makeHttpCall = (
   request: AxiosRequestConfig,

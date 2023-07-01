@@ -9,7 +9,7 @@ export default function dataTransform<
   Data,
   TransformedData extends BaseTransformedData,
 >(transformer: Transformer, data: Data): TransformedData {
-  const transformedData = {} as BaseTransformedData;
+  const transformedData: BaseTransformedData = {};
   for (const transformerKeys of Object.keys(transformer)) {
     transformedData[transformerKeys] = lodashGet(data, transformer[transformerKeys]);
   }

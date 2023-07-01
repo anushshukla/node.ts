@@ -4,7 +4,7 @@ import getEnv from '@utils/get-env';
 
 export const logger = pino({
   name: getEnv('APP_NAME') as string,
-  level: getEnv('LOGGER_LEVEL', 'info') as string,
+  level: getEnv('LOGGER_LEVEL', 'debug') as string,
   prettyPrint: getEnv('LOGGER_PRETTY', false)
     ? {
         colorize: true,
@@ -40,7 +40,7 @@ export const logger = pino({
 
 export default function getLogger(
   filePath: string,
-  options = {} as Omit<ChildLoggerOptions, 'key'>,
+  options: Omit<ChildLoggerOptions, 'key'> = {},
 ): pino.Logger<ChildLoggerOptions> {
   return logger.child({ key: filePath, ...options });
 }
