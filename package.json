@@ -11,24 +11,26 @@
   },
   "scripts": {
     "prepare": "husky install",
+    "prepush": "npm run lint",
     "pre-commit": "lint-staged",
     "install:prod": "npm  ci --cache .npm --production --prefer-offline --no-audit",
+    "build:prod": "tsc -p tsconfig.json && tsc-alias -p tsconfig.prod.json",
+    "prebuild": "rm -rf build && npm run lint && npm run format",
     "build": "tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "build:clean": "rm -rf build && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "build:strict:clean": "npm run lint && npm run format && rm -rf build && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "docker:build": "docker build . -t gg/core-be",
     "start:server:docker": "docker run -p 3000:3000 -d gg/core-be",
     "start:server:dev": "ts-node-dev --project tsconfig.json --watch src -r tsconfig-paths/register --transpile-only src/server/index.ts",
     "start:server": "node build/server/index.js",
     "generate:models": "npx typeorm-model-generator -h gg-gajigesa-staging.ccgoebjmiymn.ap-southeast-3.rds.amazonaws.com -d gajigesa -p 5432 -u postgres -x f9HJeEJbbEuhkmnc -e postgres -s public",
     "test": "NODE_ENV=test jest --detectOpenHandles --coverage --verbose --testTimeout=5000",
+    "test:watch": "npm run test --watch",
     "test:coverage": "jest --coverage",
     "test:coverage:ci": "npm run test:coverage --silent --noStackTrace --ci --bail --json",
     "lint": "eslint src/",
     "lint:changes": "func() { eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/$1 | grep  -E \"(.js$|.ts$|.tsx$)\"); }; func",
     "lint:fix": "eslint src/ --fix",
     "format:fix": "prettier src/**/**.ts --write .",
-    "format": "prettier src/**/**.ts ."
+    "format": "prettier --check src/**/**.ts ."
   },
   "repository": {
     "type": "git",
@@ -43,6 +45,7 @@
   ],
   "author": "Anush",
   "license": "MIT",
+  "private": "true",
   "bugs": {
     "url": "https://github.com/anushshukla/express-ts-boilerplate/issues"
   },

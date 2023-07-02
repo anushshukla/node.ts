@@ -1,6 +1,5 @@
 # Ref: https://nodejs.org/en/docs/guides/nodejs-docker-webapp
-
-FROM node:18.16.0 as base
+FROM node:18.16.0 as core-be-app
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -18,6 +17,7 @@ RUN npm install
 # Bundle app source
 # COPY .env ./.env
 COPY tsconfig.json ./tsconfig.json
+COPY tsconfig.build.json ./tsconfig.build.json
 COPY src ./src
 
 # Build dist

@@ -5,11 +5,22 @@ const logger = getLogger(__filename);
 
 const blacklistedPaths = ['/health', '/'];
 
+const resDotSendInterceptor = (request: Request, response: Response) => (content) => {
+  
+ };
+
 export default function logApiDetails(request: Request, response: Response, next: NextFunction): void {
   if (blacklistedPaths.includes(request.path)) {
     return;
   }
   const startTime = Date.now();
+  const orgResSend = response.send;
+  response.send = function responseSendInterceptor<T>(content: T): T {
+    response.locals.body = content;
+    response.send = orgResSend;
+    response.send(content);
+    return content;
+  };
   request.on('close', () => {
     logger.info(
       {
