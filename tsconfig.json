@@ -2,7 +2,7 @@
 {
   /* Top Level */
   "exclude": ["node_modules", "build", "coverage"],
-  "include": ["src/", "src/locales/*.json", "test/"],
+  "include": ["src/", "src/locales/*.json", "test/", "jest.config.ts", "commitlint.config.ts"],
   // "files": ["src/server/index.ts"],
   "watchFile": "useFsEvents",
   "watchDirectory": "useFsEvents",

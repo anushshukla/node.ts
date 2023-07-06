@@ -22,4 +22,11 @@ npm run lint:fixes
 
 http://localhost:3000/api-docs
 
+# Release steps
+
+The below commands will update the CHANGELOG file.
+
+- npm run commit
+- npm run release
+
 # Benchmarking

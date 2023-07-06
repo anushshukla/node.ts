@@ -1,12 +1,21 @@
 version: '3.9'
 services:
   api:
-    image: anushshukla/express-ts-boilerplate
+    container_name: express-be-app 
+    image: node.js/express-ts-boilerplate
     build:
       context: .
-      dockerfile: Dockerfile
+      target: production
+      dockerfile: ./Dockerfile
     ports:
       - '3000:3000'
     env_file:
       - .env
-    restart: on-failure:3
+    command: npm run start:prod
+    networks:
+      - app-network
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    # restart: on-failure:3
+    restart: unless-stopped
