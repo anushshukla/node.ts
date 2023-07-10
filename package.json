@@ -28,6 +28,7 @@
     "test:watch": "npm run test --watch",
     "test:coverage": "jest --coverage",
     "test:coverage:ci": "npm run test:coverage --silent --noStackTrace --ci --bail --json",
+    "docs": "jsdoc -c config/jsdoc.conf.json"
     "lint": "eslint src/",
     "lint:changes": "func() { eslint $(git diff --name-only --diff-filter=ACMRTUXB origin/$1 | grep  -E \"(.js$|.ts$|.tsx$)\"); }; func",
     "lint:fix": "eslint src/ --fix",
