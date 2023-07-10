@@ -15,6 +15,7 @@ extends:
   - plugin:@typescript-eslint/recommended
   - plugin:sonarjs/recommended
   - plugin:import/recommended
+  - plugin:jsdoc/recommended-typescript
 parserOptions:
   ecmaVersion: latest
   sourceType: module
