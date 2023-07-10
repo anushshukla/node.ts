@@ -2,7 +2,7 @@
   "plugins": [],
   "recurseDepth": 10,
   "tags": {
-    "allowUnknownTags": ["optional"] //or true
+    "allowUnknownTags": ["optional"]
   },
   "plugins": [
     "node_modules/better-docs/typescript"
