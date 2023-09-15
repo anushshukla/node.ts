@@ -14,12 +14,18 @@ logs/
 .vscode/*
 *.sublime*
 
-# Optional OS related files
+# Optional OS-related files
 ## Mac
 **/.DS_Store
 
 # Data Mapper model generation from database using ORM
 output/
+
+## Eslint report
+report.lint.html
+
+## Documentation
+docs
 
 # JS specific
 ## project dependencies
